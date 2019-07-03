@@ -1,1 +1,1 @@
-# Repo for BotSlayer
+# Repo for BotSlayer Community Edition
