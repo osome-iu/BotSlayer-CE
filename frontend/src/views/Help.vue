@@ -14,7 +14,7 @@
                     <b-list-group>
                         <b-list-group-item variant="success" target="_blank" href="https://developer.twitter.com/en/apply/user">1) Apply for a Twitter Developer Account</b-list-group-item>
                         <b-list-group-item variant="success" target="_blank" href="https://developer.twitter.com/en/docs/basics/apps/overview">2) Create a Twitter App</b-list-group-item>
-                        <b-list-group-item variant="success" target="_blank" href="https://developer.twitter.com/en/docs/basics/authentication/guides/access-tokens.html">3) Use Access Tokens on BotSlayer</b-list-group-item>
+                        <b-list-group-item variant="success" target="_blank" href="https://developer.twitter.com/en/docs/basics/authentication/guides/access-tokens.html">3) Use Access Tokens on BotSlayer-CE</b-list-group-item>
                     </b-list-group>
                 </b-card>
             </b-card-group>
