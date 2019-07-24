@@ -2,7 +2,7 @@
   <div class="about">
     <h3 style="color: #00bb00; margin: 10px;">About BotSlayer (Community Edition)</h3>
     <div class="container">
-      <p class="text-left">The "CE" version of BotSlayer is not meant for real research, as it uses simple heuristics to calculate bot scores. We strongly recommend the "Pro" version of BotSlayer, which has proprietary BotometerLite software and many other improvements. It is available for free, but will share data with Indiana University for research purposes.</p>
+      <p class="text-left">The "CE" version of BotSlayer is not meant for research, as it uses simple heuristics to calculate bot scores. We strongly recommend the "Pro" version of BotSlayer, which has proprietary BotometerLite software and many other improvements. It is available for free, but will share data with Indiana University for research purposes.</p>
 
       <p class="text-left">BotSlayer is an application that helps track and detect potential manipulation of information spreading on Twitter. The tool is developed by the <a href="https://osome.iuni.iu.edu/" target="_blank ">Observatory on Social Media</a> at Indiana University --- the same lab that brought to you Botometer and Hoaxy.</p>
 
