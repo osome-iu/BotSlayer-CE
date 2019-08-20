@@ -27,7 +27,7 @@ The embedded algorithm and user friendly interface enable anyone to detect and r
 ## BotSlayer-CE architecture
 
 The system of BotSlayer-CE can be divided into its backend and its frontend:
-![botlayerce_architecture](https://osome.iuni.iu.edu/tools/botslayer/images/botslayerce_architecture.png)
+![botlayerce_architecture](system_design.png)
 
 The backend collects and analyzes tweets, while the frontend renders a dashboard that reports suspicious content to users.
 The backend of BotSlayer-CE consists of a database, a tweet collector, and the middleware APIs for the frontend clients.
