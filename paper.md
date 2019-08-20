@@ -28,7 +28,7 @@ affiliations:
 date: 20 August 2019
 bibliography: paper.bib
 ---
-\section{Summary}
+# Summary
 
 As social media became major platforms for political campaigns and discussions of other important issues, concerns have been growing about manipulation of the information ecosystem by bad actors.
 Typical techniques used by the bad actors vary from astroturf [@Truthyicwsm2011class; @ratkiewicz2011truthy] and amplification of misinformation [@Shao18hoaxybots; @Shao2018anatomy] to trolling [@zannettou2018disinformation].
