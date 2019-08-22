@@ -17,7 +17,7 @@ authors:
   - name: Benjamin D. Serrette
     affiliation: 2
   - name: Valentin Pentchev
-  - affiliation: 2
+    affiliation: 2
   - name: Filippo Menczer
     affiliation: "1, 2"
 affiliations:
