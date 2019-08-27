@@ -78,6 +78,4 @@ Accounts that display the suspicious behaviors mentioned above will have scores 
 Bot detection is a non-trivial task that requires more advanced machine learning algorithms to achieve good accuracy.
 The embedded rule-based bot score yields about 0.70 AUC when tested on annotated accounts while state-of-the-art machine learning bot detection tools typically achieve AUC over 0.95 in the same tests.
 The bot score in BotSlayer-CE provides a useful signal, but is not accurate and robust enough for scientific research. 
-For better bot detection, users could resort to established tools such as 
-
-[Botometer](https://botometer.iuni.iu.edu/), however this will hinder real-time analysis. Alternatively, users can train their own classifier or install the proprietary version of BotSlayer.
+For better bot detection, users could resort to established tools such as [Botometer](https://botometer.iuni.iu.edu/), however this will hinder real-time analysis. Alternatively, users can train their own classifier or install the proprietary version of BotSlayer.
