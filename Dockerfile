@@ -12,11 +12,7 @@ RUN /bin/bash -c "source ~/.bashrc && nvm install node 12.4"
 # RUN echo "3" > fake.flag
 
 # obtain source code
-WORKDIR /root/
-COPY id_rsa /root/.ssh/
-RUN chmod 400 /root/.ssh/id_rsa && ssh-keyscan github.iu.edu >> /root/.ssh/known_hosts
-RUN git clone git@github.com:IUNetSci/BotSlayer-CE.git bev
-RUN rm /root/.ssh/id_rsa
+RUN git clone https://github.com/IUNetSci/BotSlayer-CE.git bev
 # REMOVE GIT FROM IMAGE
 RUN apt-get purge -y git
 
