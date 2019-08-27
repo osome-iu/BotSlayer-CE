@@ -80,4 +80,4 @@ The embedded rule-based bot score yields about 0.70 AUC when tested on annotated
 The bot score in BotSlayer-CE provides a useful signal, but is not accurate and robust enough for scientific research. 
 For better bot detection, users could resort to established tools such as 
 
-Botometer](https://botometer.iuni.iu.edu/), however this will hinder real-time analysis. Alternatively, users can train their own classifier or install the proprietary version of BotSlayer.
+[Botometer](https://botometer.iuni.iu.edu/), however this will hinder real-time analysis. Alternatively, users can train their own classifier or install the proprietary version of BotSlayer.
