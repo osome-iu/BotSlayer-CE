@@ -77,12 +77,7 @@ Finally, botness measures the level of bot-like activity.
 The intuition for the BS level is that entities with intermediate diversity and high volume, trendiness, and botness tend to be more suspicious.
 
 To measure the botness, BotSlayer-CE is equipped with a simple rule-based bot scoring function.
-Since bots typically tend to tweet more frequently, gain friends more rapidly, have fewer followers, and use default profile features compared to authentic accounts, the bot scoring function inspects the profile of each account and produces a bot score between 0 and 1 based on these features. 
+The bot scoring function uses simple heuristics based on high friend growth rate, high friend/follower ratio, high tweeting frequency, and default profile image to calculate bot scores. These heuristics yield about 0.70 AUC when tested on annotated accounts [@yang2019arming]. They may be appropriate to detect some bots and not others. Depending on the research domain, different bot detection algorithms may be advisable. One can plug their favorite bot detection system into the `BotRuler` class. One could implement simpler heuristics based on high tweet rate [@howard2016bots] or default profile image [@forelle2015political], use [state-of-the-art machine learning bot detection tools](https://botometer.iuni.iu.edu/) [@davis2016botornot; @varol2017online], or train their own classifier. For example, the ["Pro" version of BotSlayer](https://osome.iuni.iu.edu/tools/botslayer/) uses a proprietary bot detection software. 
 Accounts that display the suspicious behaviors mentioned above will have scores close to 1.
-
-Bot detection is a non-trivial task that requires more advanced machine learning algorithms to achieve good accuracy.
-The embedded rule-based bot score yields about 0.70 AUC when tested on annotated accounts [@yang2019arming] while state-of-the-art machine learning bot detection tools typically achieve AUC over 0.95 in the same tests.
-The bot score in BotSlayer-CE provides a useful signal, but is not accurate and robust enough for scientific research. 
-For better bot detection, users could resort to established tools such as [Botometer](https://botometer.iuni.iu.edu/) [@davis2016botornot; @varol2017online], however this will hinder real-time analysis. Alternatively, users can train their own classifier or install the proprietary version of BotSlayer.
 
 # References
