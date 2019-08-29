@@ -1,7 +1,3 @@
-# Warning
-
-The "CE" version of BotSlayer is not meant for research, as it uses simple heuristics to calculate bot scores. We strongly recommend the ["Pro" version of BotSlayer](https://osome.iuni.iu.edu/tools/botslayer/), which has proprietary BotometerLite software and many other improvements. It is available for free, but will share data with Indiana University for research purposes.
-
 # BotSlayer-CE (Community Edition)
 
 ## Installation instructions
@@ -37,7 +33,7 @@ In fact, most studies on this phenomenon are disseminated months or even years a
 Detecting potential manipulations from real-time social media data streams remains an open challenge.
 
 To address this challenge, we developed a tool to detect and track potential amplification of information by likely coordinated bots on Twitter in real time.
-The tool is called `BotSlayer`. Here we introduce `BotSlayer-CE`, the open-source Community Edition of the tool. There is also [a free but proprietary version](https://osome.iuni.iu.edu/tools/botslayer) that includes more sophisticated bot detection algorithms.
+The tool is called `BotSlayer`. Here we introduce `BotSlayer-CE`, the open-source Community Edition of the tool. There is also [a free but not open-source version](https://osome.iuni.iu.edu/tools/botslayer) that includes a proprietary bot detection software.
 
 BotSlayer-CE is easy to install and can be customized to any topics of interest.
 Its embedded algorithms and user-friendly interface make it possible for experts as well as reporters and citizens to study online manipulation. 
@@ -72,10 +68,5 @@ Finally, botness measures the level of bot-like activity.
 The intuition for the BS level is that entities with intermediate diversity and high volume, trendiness, and botness tend to be more suspicious.
 
 To measure the botness, BotSlayer-CE is equipped with a simple rule-based bot scoring function.
-Since bots typically tend to tweet more frequently, gain friends more rapidly, have fewer followers, and use default profile features compared to authentic accounts, the bot scoring function inspects the profile of each account and produces a bot score between 0 and 1 based on these features. 
+The bot scoring function uses simple heuristics based on high friend growth rate, high friend/follower ratio, high tweeting frequency, and default profile image to calculate bot scores. These heuristics yield about 0.70 AUC when tested on annotated accounts. They may be appropriate to detect some bots and not others. Depending on the research domain, different bot detection algorithms may be advisable. One can plug their favorite bot detection system into the `BotRuler` class ([BotRuler.py](https://github.com/IUNetSci/BotSlayer-CE/blob/master/backend/bev_backend/bev_backend/crawler/BotRuler.py)). One could implement simpler heuristics based on [high tweet rate](https://arxiv.org/abs/1606.06356) or [default profile image](https://arxiv.org/abs/1507.07109), use [state-of-the-art machine learning bot detection tools](https://botometer.iuni.iu.edu/), or train their own classifier. For example, the ["Pro" version of BotSlayer](https://osome.iuni.iu.edu/tools/botslayer/) uses a proprietary bot detection software. 
 Accounts that display the suspicious behaviors mentioned above will have scores close to 1.
-
-Bot detection is a non-trivial task that requires more advanced machine learning algorithms to achieve good accuracy.
-The embedded rule-based bot score yields about 0.70 AUC when tested on annotated accounts while state-of-the-art machine learning bot detection tools typically achieve AUC over 0.95 in the same tests.
-The bot score in BotSlayer-CE provides a useful signal, but is not accurate and robust enough for scientific research. 
-For better bot detection, users could resort to established tools such as [Botometer](https://botometer.iuni.iu.edu/), however this will hinder real-time analysis. Alternatively, users can train their own classifier or install the proprietary version of BotSlayer.
