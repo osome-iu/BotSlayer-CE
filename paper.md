@@ -12,6 +12,8 @@ authors:
     affiliation: 1
   - name: Christopher Torres-Lugo
     affiliation: 1
+  - name: Zachary Monroe
+    affiliation: 1
   - name: Marc McCarty
     affiliation: 2
   - name: Benjamin D. Serrette
