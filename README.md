@@ -19,6 +19,11 @@ Upon completion of the image building, you can setup storage volumes and run the
     
 If the container starts successfully, you should be able to find our frontend at `http://localhost:5000`, with logging running at `http://localhost:9001`.
 
+Users are recommended AGAINST exposing port `9001` to external users, because it contains debugging information, including certain settings in database and middleware. One secure way for developer to gain access to the logging interface is `SSH tunnel` as follow
+
+    ssh -L{destination_port}:localhost:9001 remoteHostIP
+ 
+
 ## Summary of BotSlayer-CE
 
 As social media became major platforms for political campaigns and discussions of other important issues, concerns have been growing about manipulation of the information ecosystem by bad actors.
