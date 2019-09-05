@@ -8,10 +8,6 @@ directly due to security concern.
 
 ### Backend
 
-Backend have three building blocks, the `BotometerLite` module, the `bev_backend` module, and the database.
-`BotometerLite` module is an external module that generates bot scores on the fly, therefore we do not
-describe it here. Interested reader can read the related ReadMe at the `BotometerLite` repository.
-
 The `bev_backend` module includes the following:
 
 - `SQL` script to create database
