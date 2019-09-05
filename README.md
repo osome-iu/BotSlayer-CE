@@ -1,5 +1,66 @@
 # BotSlayer-CE (Community Edition)
 
+## System Overview
+
+BotSlayer consists of three parts, namely backend, middleware, and frontend. Each of these parts
+are in some sense standalone with certain APIs exposed. Frontend and backend should not interact
+directly due to security concern.
+
+### Backend
+
+Backend have three building blocks, the `BotometerLite` module, the `bev_backend` module, and the database.
+`BotometerLite` module is an external module that generates bot scores on the fly, therefore we do not
+describe it here. Interested reader can read the related ReadMe at the `BotometerLite` repository.
+
+The `bev_backend` module includes the following:
+
+- `SQL` script to create database
+- `Python` crawler script (control by `circus` manager)
+
+We use `PostgreSQL` as our database to host the collected tweets. The database uses three tables to hold
+tweet data, a table for raw tweet jsons (called `twtjson`), one for entities (called `entity`), and a
+cross-sectional table between the two (called `entitytwt`). The foreign keys enable easy management via
+deletion on cascade, and should not be removed without significant discussion.
+
+We adopt `asyncpg` as the driver for `PSQL`, because the traditional `psycopg2` has a non-compatible license.
+In `Python3`, `asyncpg` is pretty much the only actively developed/maintained driver module for `PSQL`.
+Note that the async functionality is NOT why we picked it. If in the future there are better choice, we shall
+switch to avoid the extra `async/await` syntax in code.
+
+We interact with `Twitter`'s streaming API using the `Twython` module. `Tweepy` was our choice at first, but
+it lacked the features to allow streaming `extended_tweet` contents.
+
+### Middleware
+
+The middleware is mainly the `Python` file: `application.py` in the `middleware` folder. This is a `Flask` app that serves the frontend distribution (`dist`) folder and handles API calls from the frontend.
+
+### Frontend
+
+The frontend is built with `Vue`. The only components used are ones installed with `npm` and imported in `main.js`.
+
+`App.vue` handles the navbar and router links to the other pages below:
+
+ - `About.vue` is a page detailing a short description of what BotSlayer is used for.
+ - `Config.vue` is the configuration page where the user should enter their desired query and twitter keys.
+ - `DataPage.vue` acts as the landing page. It's where all of the data is shown in a table format with connectivity to Hoaxy, Twitter, and Google. This page also contains other forms of analysis like the timeline charts and the `Time Warp` feature that allows users to view prior data, considering BotSlayer is set up for things happening now (in relation to the last 4 hours).
+ - `Help.vue` contains the FAQ and some links to Twitter documentation for getting developer keys and for understanding how their streaming queries should be formatted.
+
+### Entrypoints
+
+The `Dockerfile` uses `SupervisorD` to manager multiple entry points.
+This has been the old way to have multiple applications in the same
+`Docker` container.
+
+The backend will launch via two entrypoints. First, the database will
+launch at port `5432`. Then the crawler will start up through the
+process manager `circusd`. If the crawler process exits for any reason,
+`circusd` will log the error message and restart the process.
+
+The frontend is compiled by `Vue`/`npm` into the `dist` folder, which the `middleware` file `application.py`, using `Flask`, serves on port `5000`.
+
+`nginx` doubles as BotSlayer's webserver and reverse proxy.
+It gzips all data sent to the browser and allows the user to go directly to their instance's IP address, as opposed to adding the port to the end, like so: `:5000`
+
 ## Installation instructions
 
 To install BotSlayer-CE on any linux machine, user needs to first properly install the container software `docker`. Please follow the instructions on [Docker's website](https://docs.docker.com/install/). Please remember to add your current user to the `docker` user group, which will avoid the `sudo` command in using `docker`. 
