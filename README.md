@@ -24,7 +24,7 @@ Note that the async functionality is NOT why we picked it. If in the future ther
 switch to avoid the extra `async/await` syntax in code.
 
 We interact with `Twitter`'s streaming API using the `Twython` module. `Tweepy` was our choice at first, but
-it lacked the features to allow streaming `extended_tweet` contents.
+at the time it lacked the features to allow streaming `extended_tweet` contents.
 
 ### Middleware
 
