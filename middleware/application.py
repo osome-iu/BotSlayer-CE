@@ -92,17 +92,30 @@ def fallback(fallback):
 '''
     PASSWORD SETTING
 '''
+# Changes the password used in the Config page (Config.vue)
+# Assuming the user entered their old password correctly twice
+# and that they pressed the "Change Password" button twice,
+# the frontend will pass that parameter (new password) here.
+# The password is then set in:
+# backend\bev_backend\bev_backend\database\psql\user_setting.py
 @application.route("/api/changePass")
 def change_password():
     new_pass = request.args.get('newPass', default=' ', type = str)
     set_password_setting(new_pass, loop=loop)
     return "All clear"
 
+# Checks the password attempted in the frontend against the one stored in:
+# backend\bev_backend\bev_backend\database\psql\user_setting.py
 @application.route("/api/checkPass")
 def check_password():
     pass_attempt = request.args.get('currentPass', default=' ', type = str)
     correct_pass = get_password_setting(loop=loop)
 
+    # Before even attempting to enter a password, the frontend will check anyway.
+    # If it receives 'firstTime' because the password's never been sent,
+    # it will do a first-time password setup.
+    # This is also useful if you choose to not have a password.
+    # It will take you straight to the config page since it checks instantly.
     if(correct_pass == 'password_not_set'):
         return 'firstTime'
 
@@ -115,18 +128,24 @@ def check_password():
 '''
     OTHER USER SETTINGS
 '''
+# Used in config_read_ep()
 def jsonify_user_settings():
     output = jsonify(get_user_settings(loop=loop))
     return output
 
+# The config is read and sent to the frontend so that
+# the DataPage and Config pages can display the query
+# and other user settings.
 @application.route("/api/configRead")
 def config_read_ep():
     return jsonify_user_settings()
 
-@application.route("/api/getExclusions")
-def get_exclusions():
-    config_dict = jsonify_user_settings()
-
+# This is used to save changes made to the config on the Config page.
+# It stores the settings in:
+# backend\bev_backend\bev_backend\database\psql\user_setting.py
+# Then, it restarts the crawler/streaming supervisor.
+# This is so that changed queries (or less likely, changed keys)
+# are now tracked without having to restart the instance.
 @application.route("/api/configSave")
 def config_ini_save():
     user_settings = get_user_settings(loop=loop)
@@ -142,6 +161,12 @@ def config_ini_save():
 '''
     BACKEND CALLBACKS
 '''
+# This is checked every time before the data is refreshed on the frontend.
+# It simply sends a floating point number, like 45.66,
+# which represents the disk space remaining on the server/instance.
+# If it's below 20, a warning message is displayed to the user.
+# The backend is also using a similar function and
+# will automatically delete data if it goes below 10.
 @application.route("/api/diskSpace")
 def get_disk_space():
     st = statvfs('/')
@@ -150,15 +175,23 @@ def get_disk_space():
     percent = avail * 1.0 / total * 100.0
     return str(percent)
 
-@application.route("/api/localVersion")
-def get_local_version():
-    return __version__
-
+# Entities are stored in the database without prefixes like the ones below.
+# This is because they're stored with a table column
+# that lists what type of entity they are (e.g., hashtags).
+# These are necessary for display on the frontend, however.
 MAIN_ENTITY_PREFIX = {'#', '@', '$'}
+
+# score_demo() is the main function that calls get_coord_score_report()
+# so that all of the necessary information on botness, etc. can
+# be reported to the frontend.
 @application.route("/api/scoreDemo")
 def score_demo():
+    # One can pass exclusions from the frontend so that
+    # they get results that don't include the items they
+    # searched for while retaining the cooccurrences.
     exclusion = request.args.get('exclusion', default=' ', type = str)
-    exclusion_set = { # a set for exclusion
+    exclusion_set = {
+        # remember to strip #, @, or $ to search the DB
         entity[1:].lower() if entity[0] in MAIN_ENTITY_PREFIX
             else entity
         for entity in exclusion.strip(', ').split(",")
@@ -167,17 +200,22 @@ def score_demo():
 
     try:
         records = get_coord_score_report(loop=loop)
+    # If there is any data, the middleware will try to send it,
+    # but if there's not enough data to make calculations on
+    # the BS Level, the equation may end up dividing by zero.
+    # If that happens, this error is passed along to the frontend
+    # to let the user know to wait it out or try a different query.
     except asyncpg.exceptions.DivisionByZeroError as e:
         return jsonify([{"insufficient_data": True}])
 
     toJSONArray = []
     for row in records:
-        # filter query seed if needed
+        # Ignore the entities in the exclusion_set.
         entity_text = row['entity_text']
         if entity_text in exclusion_set:
             continue
 
-        # append appropriate prefix
+        # Append the appropriate prefix, if necessary
         entity_type = row['entity_type']
         symbol_prefix = ''
         if (entity_type == "hashtags"):
@@ -187,12 +225,14 @@ def score_demo():
         elif (entity_type == "symbols"):
             symbol_prefix = '$'
 
-        # media link from a join in PSQL
+        # Tweets with pictures or videos will have a link
+        # to a picture or video thumbnail, which the frontend
+        # will use to do a Google reverse image search.
         media_link = row['media_link']
         if media_link is None:
             media_link = ''
 
-        # format elements
+        # Prepares the database records to be used in the frontend.
         toJSONArray.append(
             {
                 "Entity": symbol_prefix+entity_text,
@@ -208,7 +248,5 @@ def score_demo():
         )
 
     return jsonify(toJSONArray)
-
-
 
 if __name__ == '__main__': main()
