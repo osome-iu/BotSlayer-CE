@@ -1,6 +1,8 @@
 # BotSlayer-CE (Community Edition)
 
-## Installation instructions
+BotSlayer is an application that helps track and detect potential manipulation of information spreading on Twitter.
+
+# Installation instructions
 
 To install BotSlayer-CE on any linux machine, user needs to first properly install the container software `docker`. Please follow the instructions on [Docker's website](https://docs.docker.com/install/). Please remember to add your current user to the `docker` user group, which will avoid the `sudo` command in using `docker`. 
 
@@ -23,13 +25,13 @@ Users are recommended AGAINST exposing port `9001` to external users, because it
 
     ssh -L{destination_port}:localhost:9001 remoteHostIP
 
-## System Overview
+# System Overview
 
 BotSlayer consists of three parts, namely backend, middleware, and frontend. Each of these parts
 are in some sense standalone with certain APIs exposed. Frontend and backend should not interact
 directly due to security concern.
 
-### Backend
+## Backend
 
 The `bev_backend` module includes the following:
 
@@ -49,11 +51,11 @@ switch to avoid the extra `async/await` syntax in code.
 We interact with `Twitter`'s streaming API using the `Twython` module. `Tweepy` was our choice at first, but
 at the time it lacked the features to allow streaming `extended_tweet` contents.
 
-### Middleware
+## Middleware
 
 The middleware is mainly the `Python` file: `application.py` in the `middleware` folder. This is a `Flask` app that serves the frontend distribution (`dist`) folder and handles API calls from the frontend.
 
-### Frontend
+## Frontend
 
 The frontend is built with `Vue`. The only components used are ones installed with `npm` and imported in `main.js`.
 
@@ -64,7 +66,7 @@ The frontend is built with `Vue`. The only components used are ones installed wi
  - `DataPage.vue` acts as the landing page. It's where all of the data is shown in a table format with connectivity to Hoaxy, Twitter, and Google. This page also contains other forms of analysis like the timeline charts and the `Time Warp` feature that allows users to view prior data, considering BotSlayer is set up for things happening now (in relation to the last 4 hours).
  - `Help.vue` contains the FAQ and some links to Twitter documentation for getting developer keys and for understanding how their streaming queries should be formatted.
 
-### Entrypoints
+## Entrypoints
 
 The `Dockerfile` uses `SupervisorD` to manager multiple entry points.
 This has been the old way to have multiple applications in the same
@@ -80,7 +82,7 @@ The frontend is compiled by `Vue`/`npm` into the `dist` folder, which the `middl
 `nginx` doubles as BotSlayer's webserver and reverse proxy.
 It gzips all data sent to the browser and allows the user to go directly to their instance's IP address, as opposed to adding the port to the end, like so: `:5000`
 
-## Summary of BotSlayer-CE
+# Summary of BotSlayer-CE
 
 As social media became major platforms for political campaigns and discussions of other important issues, concerns have been growing about manipulation of the information ecosystem by bad actors.
 Typical techniques used by the bad actors vary from astroturf and amplification of misinformation to trolling .
