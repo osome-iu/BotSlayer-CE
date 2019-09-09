@@ -5,7 +5,7 @@
 Function:   |     change_password()
 ------------|-----------------------
 Route:      | /api/changePass                           
-Parameters: | none                                      
+Parameters: | newPass (str)                                      
 Returns:    | none                                      
 Result:     | changes password for config page          
 
@@ -32,7 +32,7 @@ def change_password():
 Function:   | check_password()
 ------------|----------------------
 Route:      | /api/checkPass                            
-Parameters: | none                                     
+Parameters: | currentPass (str)                                     
 Returns:    | boolean OR str (first time setup)         
 Result:     | permits/denies access to config page
 
@@ -88,7 +88,7 @@ def config_read_ep():
 Function:   | config_ini_save()  
 ------------|-------------------
 Route:      | /api/configSave                           
-Parameters: | none                                      
+Parameters: | consumerKey (str), consumerSecret (str), accessToken (str), accessTokenSecret (str), seed (list), pinned (list), location (list)                                      
 Returns:    | none                                      
 Result:     | user changes to config saved              
 
@@ -149,7 +149,7 @@ def get_disk_space():
 Function:   | score_demo()
 ------------|--------------
 Route:      | /api/scoreDemo                            
-Parameters: | none                                      
+Parameters: | exclusion (str)                                      
 Returns:    | json                                      
 Result:     | sends entity statistics to frontend       
 
