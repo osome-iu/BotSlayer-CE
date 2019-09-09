@@ -1,4 +1,4 @@
-FROM library/postgres
+FROM library/postgres:11.5
 
 # system dependencies
 RUN apt-get -qq update
