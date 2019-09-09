@@ -5,7 +5,8 @@
                 <b-btn-close @click="closeCE()" style="color: white"></b-btn-close>
                 &#9888;
                 <strong>
-                    The "CE" version of BotSlayer is not meant for research, as it uses simple heuristics to calculate bot scores. 
+                    The "CE" version uses simple heuristics to calculate bot scores.
+                    Depending on the research domain, more advanced algorithms with higher accuracy may be advisable.
                     <br>We strongly recommend the <a style="color: lightgray" target="_blank" href="https://osome.iuni.iu.edu/tools/botslayer/">"Pro" version of BotSlayer</a>, which has proprietary BotometerLite software and many other improvements. 
                     <br>It is available for free, but will share data with Indiana University for research purposes.
                 </strong>
