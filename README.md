@@ -1,5 +1,28 @@
 # BotSlayer-CE (Community Edition)
 
+## Installation instructions
+
+To install BotSlayer-CE on any linux machine, user needs to first properly install the container software `docker`. Please follow the instructions on [Docker's website](https://docs.docker.com/install/). Please remember to add your current user to the `docker` user group, which will avoid the `sudo` command in using `docker`. 
+
+With `docker` installed, you can then proceed to clone this repository, e.g.
+
+    git clone https://github.com/IUNetSci/BotSlayer-CE.git
+
+Enter the repo directory, and build the docker image by
+
+    docker build --tag=bsce .
+    
+Upon completion of the image building, you can setup storage volumes and run the container by
+
+    docker volume create pgdata
+    docker run -dit -p 5432:5432 -p 5000:5000 -p 9001:9001 -v pgdata:/var/lib/postgresql/data bsce
+    
+If the container starts successfully, you should be able to find our frontend at `http://localhost:5000`, with logging running at `http://localhost:9001`.
+
+Users are recommended AGAINST exposing port `9001` to external users, because it contains debugging information, including certain settings in database and middleware. One secure way for developer to gain access to the logging interface is `SSH tunnel` as follow
+
+    ssh -L{destination_port}:localhost:9001 remoteHostIP
+
 ## System Overview
 
 BotSlayer consists of three parts, namely backend, middleware, and frontend. Each of these parts
@@ -56,30 +79,6 @@ The frontend is compiled by `Vue`/`npm` into the `dist` folder, which the `middl
 
 `nginx` doubles as BotSlayer's webserver and reverse proxy.
 It gzips all data sent to the browser and allows the user to go directly to their instance's IP address, as opposed to adding the port to the end, like so: `:5000`
-
-## Installation instructions
-
-To install BotSlayer-CE on any linux machine, user needs to first properly install the container software `docker`. Please follow the instructions on [Docker's website](https://docs.docker.com/install/). Please remember to add your current user to the `docker` user group, which will avoid the `sudo` command in using `docker`. 
-
-With `docker` installed, you can then proceed to clone this repository, e.g.
-
-    git clone https://github.com/IUNetSci/BotSlayer-CE.git
-
-Enter the repo directory, and build the docker image by
-
-    docker build --tag=bsce .
-    
-Upon completion of the image building, you can setup storage volumes and run the container by
-
-    docker volume create pgdata
-    docker run -dit -p 5432:5432 -p 5000:5000 -p 9001:9001 -v pgdata:/var/lib/postgresql/data bsce
-    
-If the container starts successfully, you should be able to find our frontend at `http://localhost:5000`, with logging running at `http://localhost:9001`.
-
-Users are recommended AGAINST exposing port `9001` to external users, because it contains debugging information, including certain settings in database and middleware. One secure way for developer to gain access to the logging interface is `SSH tunnel` as follow
-
-    ssh -L{destination_port}:localhost:9001 remoteHostIP
- 
 
 ## Summary of BotSlayer-CE
 
