@@ -31,7 +31,7 @@ Now that you have BotSlayer-CE up and running, you can start to configure your i
 You can go the `Config` page from the link in the upper right corner of the page.
 Since it's a fresh instance, you will need to set a password for access the config page later.
 
-In the `Config` page, you can set your query and APP key.
+In the `Config` page, you can set your query and APP key, see **Figure 1** for a screen shot.
 The query will be used to collect tweets of your interest from Twitter.
 Suppose we want to inspect the healthiness of the online discussion about the 2020 U.S. presidential election, we can use several related hashtags as the query.
 
@@ -122,7 +122,7 @@ Its embedded algorithms and user-friendly interface make it possible for experts
 
 ![Figure 1: System architecture of BotSlayer-CE.](system_design.png)
 
-**Figure 1** shows an overview of the BotSlayer-CE system architecture with its backend and frontend.
+**Figure 2** shows an overview of the BotSlayer-CE system architecture with its backend and frontend.
 The backend collects and analyzes tweets, while the frontend renders a dashboard that reports suspicious content to users.
 The backend consists of a database, a tweet collector, and the middleware APIs for the frontend clients.
 
