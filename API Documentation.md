@@ -65,25 +65,6 @@ def check_password():
 
 ## User Settings
 
-Function:   | jsonify_user_settings()     
-------------|--------------------------
-Route:      | none                                      
-Parameters: | none                                      
-Returns:    | json                                      
-Result:     | jsonifies config settings                 
-
-### Extra notes:
-Used in `config_read_ep()`
-
-### Code:
-```python
-def jsonify_user_settings():
-    output = jsonify(get_user_settings(loop=loop))
-    return output
-```
-
-------------------------------------------
-
 Function:   | config_read_ep()
 ------------|------------------
 Route:      | /api/configRead                           
