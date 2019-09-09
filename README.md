@@ -24,6 +24,25 @@ If the container starts successfully, you should be able to find our frontend at
 Users are recommended AGAINST exposing port `9001` to external users, because it contains debugging information, including certain settings in database and middleware. One secure way for developer to gain access to the logging interface is `SSH tunnel` as follow
 
     ssh -L{destination_port}:localhost:9001 remoteHostIP
+    
+# Real-world Use Case
+
+Now that you have BotSlayer-CE up and running, you can start to configure your instance to track the topics of your interest.
+You can go the `Config` page from the link in the upper right corner of the page.
+Since it's a fresh instance, you will need to set a password for access the config page later.
+
+In the `Config` page, you can set your query and APP key.
+The query will be used to collect tweets of your interest from Twitter.
+Suppose we want to inspect the healthiness of the online discussion about the 2020 U.S. presidential election, we can use several related hashtags as the query.
+
+In order for BotSlayer-CE to run, you will need an APP key from Twitter.
+Once you put consumer key, consumer secret, access token, and access token secret in the dedicated places and click the `SAVE` button, the change will take effect immediately.
+A fresh BotSlyer-CE instance needs at least 8 hours to collect data before it can conduct meaningful analysis.
+But it only takes a few minutes for it to produce some preliminary results if the volumn of the query is large enough.
+
+![Figure 1: Config page of BotSlayer-CE.](config_page.png)
+
+Everytime you want to change the configuration, you can go bakc to the `Config` page.
 
 # System Overview
 
