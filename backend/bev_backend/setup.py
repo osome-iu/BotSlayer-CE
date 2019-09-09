@@ -17,7 +17,6 @@ setup(
         "circus",
         "asyncpg",
         "tweepy",
-        "pandas",
-        "numpy"
+        "pandas"
     ],
 )
