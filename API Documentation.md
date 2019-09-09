@@ -1,6 +1,6 @@
-#              BotSlayer-CE API Documentation             #
+# BotSlayer-CE API Documentation             
 
-##               Password Settings               ##
+## Password Settings               
 
 Function:   |     change_password()
 ------------|-----------------------
@@ -75,6 +75,7 @@ Result:     | jsonifies config settings
 ### Extra notes:
 Used in `config_read_ep()`
 
+### Code:
 ```python
 def jsonify_user_settings():
     output = jsonify(get_user_settings(loop=loop))
@@ -94,6 +95,7 @@ Result:     | sends config data to frontend
 The config is read and sent to the frontend so that 
 the `DataPage` and `Config` pages can display the query and other user settings.
 
+### Code:
 ```python
 @application.route("/api/configRead")
 def config_read_ep():
@@ -118,6 +120,7 @@ Then, it restarts the crawler/streaming supervisor.\
 This is so that changed queries (or less likely, changed keys)
 are now tracked without having to restart the instance.
 
+### Code:
 ```python
 @application.route("/api/configSave")
 def config_ini_save():
@@ -149,6 +152,7 @@ If it's below `20`, a warning message is displayed to the user.\
 The backend is also using a similar function and
 will automatically delete data if it goes below `10`.
 
+### Code:
 ```python
 @application.route("/api/diskSpace")
 def get_disk_space():
@@ -173,6 +177,7 @@ Result:     | sends entity statistics to frontend
 so that all of the necessary information on botness, etc. can
 be reported to the frontend.
 
+### Code:
 ```python
 # Entities are stored in the database without prefixes like the ones below.
 # This is because they're stored with a table column
