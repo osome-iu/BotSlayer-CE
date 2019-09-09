@@ -5,7 +5,7 @@ import asyncio
 import subprocess
 # dependencies
 import tweepy
-from BotRuler import BotRuler
+from bev_backend.crawler.BotRuler import BotRuler
 from bev_backend.database.psql.common import singleton_query
 from bev_backend.database.psql.common import run_sync_transaction
 from bev_backend.database.psql.user_setting import get_user_settings
