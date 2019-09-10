@@ -103,6 +103,17 @@ The frontend is compiled by `Vue`/`npm` into the `dist` folder, which the `middl
 `nginx` doubles as BotSlayer's webserver and reverse proxy.
 It gzips all data sent to the browser and allows the user to go directly to their instance's IP address, as opposed to adding the port to the end, like so: `:5000`
 
+# Data Export
+
+You can export the data in CSV format by clcking the `Export` button on the main page.
+
+For PRO users, you can access the database through
+
+    psql -U bev -h localhost -p 5432 bev
+
+and dump the raw data directly (you might need to install `psql` on your machine first).
+Please refer to the `db_schema.md` for the table schema.
+
 # Summary of BotSlayer-CE
 
 As social media became major platforms for political campaigns and discussions of other important issues, concerns have been growing about manipulation of the information ecosystem by bad actors.
