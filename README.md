@@ -61,6 +61,7 @@ We use `PostgreSQL` as our database to host the collected tweets. The database u
 tweet data, a table for raw tweet jsons (called `twtjson`), one for entities (called `entity`), and a
 cross-sectional table between the two (called `entitytwt`). The foreign keys enable easy management via
 deletion on cascade, and should not be removed without significant discussion.
+See [`db_schema.md`](db_schema.md)
 
 We adopt `asyncpg` as the driver for `PSQL`, because the traditional `psycopg2` has a non-compatible license.
 In `Python3`, `asyncpg` is pretty much the only actively developed/maintained driver module for `PSQL`.
@@ -72,6 +73,7 @@ We interact with `Twitter`'s streaming API using the `Tweepy` module.
 ## Middleware
 
 The middleware is mainly the `Python` file: `application.py` in the `middleware` folder. This is a `Flask` app that serves the frontend distribution (`dist`) folder and handles API calls from the frontend.
+See [`API Documentation.md`](API%20Documentation.md).
 
 ## Frontend
 
@@ -111,7 +113,7 @@ The password is 'bev'.
 Note that although the password is public, only system administrators of the BotSlayer instance can access the database, unless the system administrator exposes the PostgreSQL port which by default is `5432`.
 We strongly recommend AGAINST this.
 Through the database, the user can access the raw data.
-Please refer to the `db_schema.md` for the table schema.
+Please refer to the [`db_schema.md`](db_schema.md) for the table schema.
 
 # Summary of BotSlayer-CE
 
