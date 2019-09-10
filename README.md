@@ -114,6 +114,8 @@ Note that although the password is public, only system administrators of the Bot
 We strongly recommend AGAINST this.
 Through the database, the user can access the raw data.
 Please refer to the [`db_schema.md`](db_schema.md) for the table schema.
+Please be aware of Twitter's [terms and policies](https://developer.twitter.com/en/developer-terms/agreement-and-policy.html) with regard to sharing Twitter content with third parties.
+
 
 # Summary of BotSlayer-CE
 
