@@ -47,7 +47,7 @@ To address this challenge, we developed a tool to detect and track potential amp
 The tool is called `BotSlayer`. Here we introduce `BotSlayer-CE`, the open-source Community Edition of the tool. There is also [a free but proprietary version](https://osome.iuni.iu.edu/tools/botslayer) that includes more sophisticated bot detection algorithms.
 
 BotSlayer-CE is easy to install and can be customized to any topics of interest.
-Its embedded algorithms and user-friendly interface make it possible for experts as well as reporters and citizens to study online manipulation. 
+Its embedded algorithms and user-friendly interface make it possible for experts as well as journalists and citizens to study online manipulation. 
 
 ![Figure 1: System architecture of BotSlayer-CE.](system_design.png)
 
