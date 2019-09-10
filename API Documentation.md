@@ -48,7 +48,7 @@ def check_password():
     correct_pass = get_password_setting(loop=loop)
 
     # Before even attempting to enter a password, the frontend will check anyway.
-    # If it receives 'firstTime' because the password's never been sent,
+    # If it receives 'firstTime' because the password's never been set,
     # it will do a first-time password setup.
     # This is also useful if you choose to not have a password.
     # It will take you straight to the config page since it checks instantly.
@@ -88,7 +88,7 @@ def config_read_ep():
 Function:   | config_ini_save()  
 ------------|-------------------
 Route:      | /api/configSave                           
-Parameters: | consumerKey (str), consumerSecret (str), accessToken (str), accessTokenSecret (str), seed (list), pinned (list), location (list)                                      
+Parameters: | consumerKey (str), consumerSecret (str), accessToken (str), accessTokenSecret (str), seed (list)
 Returns:    | none                                      
 Result:     | user changes to config saved              
 
@@ -100,6 +100,7 @@ It stores the settings in:\
 Then, it restarts the crawler/streaming supervisor.\
 This is so that changed queries (or less likely, changed keys)
 are now tracked without having to restart the instance.
+The seed is the list of query terms.
 
 ### Code:
 ```python
@@ -126,9 +127,9 @@ Returns:    | str
 Result:     | lets frontend/user know disk space left   
 
 ## Extra notes:
-This is checked every time before the data is refreshed on the frontend.\
+This is checked every time the data is refreshed on the frontend.\
 It simply sends a floating point number, like `45.66`,
-which represents the disk space remaining on the server/instance.\
+which represents the percentage of disk space remaining on the server/instance.\
 If it's below `20`, a warning message is displayed to the user.\
 The backend is also using a similar function and
 will automatically delete data if it goes below `10`.
