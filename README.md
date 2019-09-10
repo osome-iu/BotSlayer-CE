@@ -39,10 +39,15 @@ In the `Config` page, you can set your query and Twitter app keys and tokens, se
 The query will be used to collect tweets of interest from Twitter.
 Suppose we want to inspect the health of the online discussion about the 2020 U.S. election; we can use several related hashtags as the query.
 
+# Testing
+
 In order for BotSlayer-CE to run, you will need app keys from Twitter.
-Once you put consumer key, consumer secret, access token, and access token secret in the dedicated fields and click the `SAVE` button, the change will take effect immediately.
-It only takes a few minutes for data to be visible in the dashboard if the query produces enough volume.
+Once you enter consumer key, consumer secret, access token, and access token secret in the dedicated fields of the `Config` page and click the `SAVE` button, the change will take effect immediately.
+
+It only takes a few minutes for data to be visible in the dashboard if the query produces enough volume. That is how you will know that the system is working.
 However, a fresh BotSlyer-CE instance needs at least 8 hours to collect data for meaningful analysis.
+
+If the system is not collecting data, you will see a warning message on the dashboard (`Data` page) and explanation of possible reasons.
 
 # System Overview
 
