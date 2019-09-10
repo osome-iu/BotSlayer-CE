@@ -31,6 +31,8 @@ Now that you have BotSlayer-CE up and running, you can start to configure your i
 You can go the `Config` page from the link in the upper right corner of the page.
 Since it's a fresh instance, you will need to set a password for access the config page later.
 
+![Figure 1: Config page of BotSlayer-CE.](config_page.png)
+
 In the `Config` page, you can set your query and APP key, see **Figure 1** for a screen shot.
 The query will be used to collect tweets of your interest from Twitter.
 Suppose we want to inspect the healthiness of the online discussion about the 2020 U.S. presidential election, we can use several related hashtags as the query.
@@ -40,13 +42,11 @@ Once you put consumer key, consumer secret, access token, and access token secre
 A fresh BotSlyer-CE instance needs at least 8 hours to collect data before it can conduct meaningful analysis.
 But it only takes a few minutes for it to produce some preliminary results if the volumn of the query is large enough.
 
-![Figure 1: Config page of BotSlayer-CE.](config_page.png)
-
-Everytime you want to change the configuration, you can go bakc to the `Config` page.
-
 # System Overview
 
-BotSlayer consists of three parts, namely backend, middleware, and frontend. Each of these parts
+![Figure 1: System architecture of BotSlayer-CE.](system_design.png)
+
+BotSlayer consists of three parts, namely backend, middleware, and frontend (**Figure 2**). Each of these parts
 are in some sense standalone with certain APIs exposed. Frontend and backend should not interact
 directly due to security concern.
 
@@ -119,8 +119,6 @@ The tool is called `BotSlayer`. Here we introduce `BotSlayer-CE`, the open-sourc
 
 BotSlayer-CE is easy to install and can be customized to any topics of interest.
 Its embedded algorithms and user-friendly interface make it possible for experts as well as reporters and citizens to study online manipulation. 
-
-![Figure 1: System architecture of BotSlayer-CE.](system_design.png)
 
 **Figure 2** shows an overview of the BotSlayer-CE system architecture with its backend and frontend.
 The backend collects and analyzes tweets, while the frontend renders a dashboard that reports suspicious content to users.
