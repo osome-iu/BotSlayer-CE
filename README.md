@@ -1,6 +1,8 @@
 # BotSlayer-CE (Community Edition)
 
 BotSlayer is an application that helps track and detect potential manipulation of information spreading on Twitter.
+It's fast and accurate, the user-friendly interface makes it suitable for researchers from academia as well as journalists and citizens.
+
 
 # Installation instructions
 
@@ -118,7 +120,7 @@ To address this challenge, we developed a tool to detect and track potential amp
 The tool is called `BotSlayer`. Here we introduce `BotSlayer-CE`, the open-source Community Edition of the tool. There is also [a free but not open-source version](https://osome.iuni.iu.edu/tools/botslayer) that includes a proprietary bot detection software.
 
 BotSlayer-CE is easy to install and can be customized to any topics of interest.
-Its embedded algorithms and user-friendly interface make it possible for experts as well as reporters and citizens to study online manipulation. 
+Its embedded algorithms and user-friendly interface make it possible for experts as well as journalists and citizens to study online manipulation. 
 
 **Figure 2** shows an overview of the BotSlayer-CE system architecture with its backend, middleware, and frontend.
 The backend collects and analyzes tweets, while the frontend renders a dashboard that reports suspicious content to users.
