@@ -112,7 +112,7 @@ def check_password():
     correct_pass = get_password_setting(loop=loop)
 
     # Before even attempting to enter a password, the frontend will check anyway.
-    # If it receives 'firstTime' because the password's never been sent,
+    # If it receives 'firstTime' because the password's never been set,
     # it will do a first-time password setup.
     # This is also useful if you choose to not have a password.
     # It will take you straight to the config page since it checks instantly.
