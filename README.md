@@ -1,12 +1,12 @@
 # BotSlayer-CE (Community Edition)
 
 BotSlayer is an application that helps track and detect potential manipulation of information spreading on Twitter.
-It's fast and accurate, the user-friendly interface makes it suitable for researchers from academia as well as journalists and citizens.
+It's fast and the user-friendly interface makes it suitable for researchers from academia as well as journalists and citizens.
 
 
 # Installation instructions
 
-To install BotSlayer-CE on any linux machine, user needs to first properly install the container software `docker`. Please follow the instructions on [Docker's website](https://docs.docker.com/install/). Please remember to add your current user to the `docker` user group, which will avoid the `sudo` command in using `docker`. 
+To install BotSlayer-CE on any linux machine, user needs to first properly install the container software `docker`. Please follow the instructions on [Docker's website](https://docs.docker.com/install/). Please remember to add your current user to the `docker` user group, which will avoid the need for the `sudo` command when using `docker`. 
 
 With `docker` installed, you can then proceed to clone this repository, e.g.
 
@@ -21,36 +21,34 @@ Upon completion of the image building, you can setup storage volumes and run the
     docker volume create pgdata
     docker run -dit -p 5432:5432 -p 5000:5000 -p 9001:9001 -v pgdata:/var/lib/postgresql/data bsce
     
-If the container starts successfully, you should be able to find our frontend at `http://localhost:5000`, with logging running at `http://localhost:9001`.
+If the container starts successfully, you should be able to find the frontend at `http://localhost:5000`, with logging running at `http://localhost:9001`.
 
-Users are recommended AGAINST exposing port `9001` to external users, because it contains debugging information, including certain settings in database and middleware. One secure way for developer to gain access to the logging interface is `SSH tunnel` as follow
+Users are recommended AGAINST exposing port `9001` to external users, because it contains debugging information, including certain settings in database and middleware. One secure way for developers to gain access to the logging interface is `SSH tunnel` as follows
 
     ssh -L{destination_port}:localhost:9001 remoteHostIP
     
 # Real-world Use Case
 
-Now that you have BotSlayer-CE up and running, you can start to configure your instance to track the topics of your interest.
-You can go the `Config` page from the link in the upper right corner of the page.
-Since it's a fresh instance, you will need to set a password for access the config page later.
+Now that you have BotSlayer-CE up and running, you can start to configure your instance to track the topics of interest.
+You can go to the `Config` page from the link in the upper right corner of the page.
+Since it's a fresh instance, you will need to set a password to access the `Config` page later.
 
 ![Figure 1: Config page of BotSlayer-CE.](config_page.png)
 
-In the `Config` page, you can set your query and APP key, see **Figure 1** for a screen shot.
-The query will be used to collect tweets of your interest from Twitter.
-Suppose we want to inspect the healthiness of the online discussion about the 2020 U.S. presidential election, we can use several related hashtags as the query.
+In the `Config` page, you can set your query and Twitter app keys and tokens, see **Figure 1** for a screen shot.
+The query will be used to collect tweets of interest from Twitter.
+Suppose we want to inspect the health of the online discussion about the 2020 U.S. election; we can use several related hashtags as the query.
 
-In order for BotSlayer-CE to run, you will need an APP key from Twitter.
-Once you put consumer key, consumer secret, access token, and access token secret in the dedicated places and click the `SAVE` button, the change will take effect immediately.
-A fresh BotSlyer-CE instance needs at least 8 hours to collect data before it can conduct meaningful analysis.
-But it only takes a few minutes for it to produce some preliminary results if the volumn of the query is large enough.
+In order for BotSlayer-CE to run, you will need app keys from Twitter.
+Once you put consumer key, consumer secret, access token, and access token secret in the dedicated fields and click the `SAVE` button, the change will take effect immediately.
+It only takes a few minutes for data to be visible in the dashboard if the query produces enough volume.
+However, a fresh BotSlyer-CE instance needs at least 8 hours to collect data for meaningful analysis.
 
 # System Overview
 
 ![Figure 1: System architecture of BotSlayer-CE.](system_design.png)
 
-BotSlayer consists of three parts, namely backend, middleware, and frontend (**Figure 2**). Each of these parts
-are in some sense standalone with certain APIs exposed. Frontend and backend should not interact
-directly due to security concern.
+BotSlayer consists of three parts, namely backend, middleware, and frontend (**Figure 2**). These parts communicate through internal APIs.
 
 ## Backend
 
@@ -69,8 +67,7 @@ In `Python3`, `asyncpg` is pretty much the only actively developed/maintained dr
 Note that the async functionality is NOT why we picked it. If in the future there are better choice, we shall
 switch to avoid the extra `async/await` syntax in code.
 
-We interact with `Twitter`'s streaming API using the `Twython` module. `Tweepy` was our choice at first, but
-at the time it lacked the features to allow streaming `extended_tweet` contents.
+We interact with `Twitter`'s streaming API using the `Tweepy` module.
 
 ## Middleware
 
@@ -84,34 +81,36 @@ The frontend is built with `Vue`. The only components used are ones installed wi
 
  - `About.vue` is a page detailing a short description of what BotSlayer is used for.
  - `Config.vue` is the configuration page where the user should enter their desired query and twitter keys.
- - `DataPage.vue` acts as the landing page. It's where all of the data is shown in a table format with connectivity to Hoaxy, Twitter, and Google. This page also contains other forms of analysis like the timeline charts and the `Time Warp` feature that allows users to view prior data, considering BotSlayer is set up for things happening now (in relation to the last 4 hours).
- - `Help.vue` contains the FAQ and some links to Twitter documentation for getting developer keys and for understanding how their streaming queries should be formatted.
+ - `DataPage.vue` acts as the landing page. It's where all of the data is shown in a table format with connectivity to Hoaxy, Twitter, and Google.
+ - `Help.vue` contains some links to Twitter documentation for getting developer keys and for understanding how their streaming queries should be formatted.
 
 ## Entrypoints
 
-The `Dockerfile` uses `SupervisorD` to manager multiple entry points.
-This has been the old way to have multiple applications in the same
-`Docker` container.
+The `Dockerfile` uses `SupervisorD` to manage multiple entry points.
 
 The backend will launch via two entrypoints. First, the database will
 launch at port `5432`. Then the crawler will start up through the
 process manager `circusd`. If the crawler process exits for any reason,
 `circusd` will log the error message and restart the process.
 
-The frontend is compiled by `Vue`/`npm` into the `dist` folder, which the `middleware` file `application.py`, using `Flask`, serves on port `5000`.
+The frontend is compiled by `Vue`/`npm` into the `dist` folder, which the `middleware` file `application.py`, serves on port `5000` using `Flask`.
 
 `nginx` doubles as BotSlayer's webserver and reverse proxy.
 It gzips all data sent to the browser and allows the user to go directly to their instance's IP address, as opposed to adding the port to the end, like so: `:5000`
 
 # Data Export
 
-You can export the data in CSV format by clcking the `Export` button on the main page.
+You can export the dashboard data in CSV format by clcking the `Export` button on the main page.
 
-For PRO users, you can access the database through
+It is also possible to access the full Twitter content collected by the BotSlayer backend by accessing the database:
 
     psql -U bev -h localhost -p 5432 bev
-
-and dump the raw data directly (you might need to install `psql` on your machine first).
+    
+You might need to install `psql` on your machine first.
+The password is 'bev'.
+Note that although the password is public, only system administrators of the BotSlayer instance can access the database, unless the system administrator exposes the PostgreSQL port which by default is `5432`.
+We strongly recommend AGAINST this.
+Through the database, the user can access the raw data.
 Please refer to the `db_schema.md` for the table schema.
 
 # Summary of BotSlayer-CE
