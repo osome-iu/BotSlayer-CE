@@ -6,8 +6,8 @@
 
 | column | type | note |
 |--------|------|------|
-| tid | bigint | Tweet id of the tweet. |
-| tweet | jsonb | Tweet JSON object. |
+| tid | bigint | Tweet id of the tweet |
+| tweet | jsonb | Tweet JSON object |
 | created\_at | timestamp | Tweet JSON object |
 
 ## `entity` table
@@ -31,6 +31,6 @@ It also stores the botscores accociated with each entity.
 | tid | bigint | Tweet id of the tweet in `twtjson` table |
 | entity\_id | integer | Entity ID in `entity` table |
 | user\_id | bigint | User ID |
-| bot\_score  | real | Botsckore accoicated with the entity |
+| bot\_score  | real | Botscores associated with the entity |
 | tweet\_date | timestamp | Creation time of the tweet |
 | created\_at | timestamp | Insertion time of the entity |
