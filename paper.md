@@ -47,13 +47,13 @@ To address this challenge, we developed a tool to detect and track potential amp
 The tool is called `BotSlayer`. Here we introduce `BotSlayer-CE`, the open-source Community Edition of the tool. There is also [a free but proprietary version](https://osome.iuni.iu.edu/tools/botslayer) that includes more sophisticated bot detection algorithms.
 
 BotSlayer-CE is easy to install and can be customized to any topics of interest.
-Its embedded algorithms and user-friendly interface make it possible for experts as well as reporters and citizens to study online manipulation. 
+Its embedded algorithms and user-friendly interface make it possible for experts as well as journalists and citizens to study online manipulation. 
 
 ![Figure 1: System architecture of BotSlayer-CE.](system_design.png)
 
-**Figure 1** shows an overview of the BotSlayer-CE system architecture with its backend and frontend.
+**Figure 1** shows an overview of the BotSlayer-CE system architecture with its backend, middleware, and frontend.
 The backend collects and analyzes tweets, while the frontend renders a dashboard that reports suspicious content to users.
-The backend consists of a database, a tweet collector, and the middleware APIs for the frontend clients.
+The backend and frontend communicate with each other through the middleware APIs.
 
 Data collection is query-driven and requires a Twitter app key.
 The user-defined query is a set of keywords of interest, see [Twitter's document](https://developer.twitter.com/en/docs/tweets/filter-realtime/guides/basic-stream-parameters.html#track) for details.
