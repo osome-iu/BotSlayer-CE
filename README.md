@@ -41,6 +41,19 @@ Suppose we want to inspect the health of the online discussion about the 2020 U.
 
 # Testing
 
+## Automated
+
+The automated test for the `backend` can be executed at the directory `backend/bev_backend/bev_backend/test` as follows
+
+    python3 -m unittest discover
+
+We have automated tests for all functions that do not involve direct database IO.
+This is because these functions work via side effects on the database, and therefore testing requires a running database instance.
+
+To test the functionalities that involve database interactions, it is best to manually inspect the log outputs at port 9001 when the software is running.
+
+## Manual
+
 In order for BotSlayer-CE to run, you will need app keys from Twitter.
 Once you enter consumer key, consumer secret, access token, and access token secret in the dedicated fields of the `Config` page and click the `SAVE` button, the change will take effect immediately.
 
@@ -48,6 +61,8 @@ It only takes a few minutes for data to be visible in the dashboard if the query
 However, a fresh BotSlyer-CE instance needs at least 8 hours to collect data for meaningful analysis.
 
 If the system is not collecting data, you will see a warning message on the dashboard (`Data` page) and explanation of possible reasons.
+
+The logs at port 9001 should shows that tweets are being parsed, indexed, and inserted into the database, which ensures that the crawler and the database are working properly.
 
 # System Overview
 
