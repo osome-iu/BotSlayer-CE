@@ -48,9 +48,9 @@ The automated test for the `backend` can be executed at the directory `backend/b
     python3 -m unittest discover
 
 We have automated tests for all functions that do not involve direct database IO.
-This is because these functions works via side effects on database, and therefore requires a running database instance for their tests.
+This is because these functions work via side effects on the database, and therefore testing requires a running database instance.
 
-To tests the functionalities that involve database interactions, it is best to manually inspect the log outputs at port 9001 when the software is running.
+To test the functionalities that involve database interactions, it is best to manually inspect the log outputs at port 9001 when the software is running.
 
 ## Manual
 
