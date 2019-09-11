@@ -2,18 +2,14 @@ import pandas as pd
 import numpy as np
 import datetime
 
-# [Warning] BotRuler and BotSlayer-CE which builds upon it should not be
-# used for serious scientific research as the results might not be accurate and
-# robust enough.
-#
-# BotRuler is a simple rule-based bot detection tool.
 # By using several heuristics, BotRuler is able to generate a bot score for
 # every user which serves as a feature to detect bot campaign.
 # BotRuler is estimated to have AUC 0.65 to 0.70 when tested on annotated
 # datasets while state-of-the-art machine learning based bot detection tools
 # typically have AUC over 0.95 in the same tests.
 # According to the tests, BotRuler is capable to provide some useful signals for bot
-# detection, but still far from a reliable bot detection tool.
+# detection, but more advanced bot detection tools might be adavisible
+# depending on the research area.
 # BotRuler is included as a placeholder so the users can have a taste of
 # BotSlayer and add new features to it.
 #
@@ -31,6 +27,7 @@ def parse_date(timestamp_str):
         timestamp_str, '%a %b %d %H:%M:%S %z %Y'
     )
     return timestamp.replace(tzinfo=None)
+
 
 def extract_raw_features_from_tweet_obj(tweet_obj):
     """
@@ -71,6 +68,7 @@ def extract_raw_features_from_tweet_obj(tweet_obj):
     }
 
     return raw_feature_dict
+
 
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
