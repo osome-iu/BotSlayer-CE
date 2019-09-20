@@ -24,7 +24,7 @@ Upon completion of the image building, you can setup storage volumes and run the
 Some of the ports used above (5000 for web interface, 5432 for database, 9001 for logging) may be already taken by existing processes in your machine.
 For example, port 5432 would be taken if your machine has a PostgreSQL database running before launching BotSlayer.
 In this case, you are free to assign your own port, such as port 5555, as destination of the port mapping.
-The command to launch BotSlayer will then become
+The command to launch BotSlayer will then become:
 
     docker run -dit -p 5555:5432 -p 5000:5000 -p 9001:9001 -v pgdata:/var/lib/postgresql/data bsce
 
@@ -143,7 +143,7 @@ Through the database, the user can access the raw data.
 Please refer to the [`db_schema.md`](db_schema.md) for the table schema.
 Please be aware of Twitter's [terms and policies](https://developer.twitter.com/en/developer-terms/agreement-and-policy.html) with regard to sharing Twitter content with third parties.
 
-If you have mapped the ports differently for the database (not 5432) when launching the BotSlayer container, please be reminded to change `-p 5432` to `-p your_destination_port` accordingly.
+If you have mapped the ports differently for the database (not 5432) when launching the BotSlayer container, please remember to change `-p 5432` to `-p your_destination_port` accordingly.
 
 # Summary of BotSlayer-CE
 
