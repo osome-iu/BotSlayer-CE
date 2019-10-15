@@ -34,7 +34,7 @@ bibliography: paper.bib
 
 As social media became major platforms for political campaigns and discussions of other important issues, concerns have been growing about manipulation of the information ecosystem by bad actors.
 Typical techniques used by the bad actors vary from astroturf [@Truthyicwsm2011class; @ratkiewicz2011truthy] and amplification of misinformation [@Shao18hoaxybots; @Shao2018anatomy] to trolling [@zannettou2018disinformation].
-Attempts to manipulate discussions may and often does involve real humans; examples include trolls from Russia [@badawy2018characterizing; @zannettou2018disinformation; @kim2019tracking] and Iran [@zannettou2018let].
+Attempts to manipulate discussions may and often does involve real humans; examples include trolls from Russia [@badawy2019characterizing; @zannettou2018disinformation; @kim2019tracking] and Iran [@zannettou2019let].
 Recent reports show that malicious social bots --- inauthentic accounts controlled in part by software --- have been active during the U.S. presidential election in 2016 [@bessi2016social], the 2017 Catalan referendum in Spain [@stella2018bots], the French Presidential Election of 2017 [@ferrara2017disinformation], and the 2018 U.S. midterm election [@deb2019perils].
 
 Detecting such manipulation presents serious research challenges. 
