@@ -49,7 +49,7 @@ The tool is called `BotSlayer`. Here we introduce `BotSlayer-CE`, the open-sourc
 BotSlayer-CE is easy to install and can be customized to any topics of interest.
 Its embedded algorithms and user-friendly interface make it possible for experts as well as journalists and citizens to study online manipulation. 
 
-![Figure 1: System architecture of BotSlayer-CE.](system_design.png)
+![System architecture of BotSlayer-CE.](system_design.png)
 
 **Figure 1** shows an overview of the BotSlayer-CE system architecture with its backend, middleware, and frontend.
 The backend collects and analyzes tweets, while the frontend renders a dashboard that reports suspicious content to users.
