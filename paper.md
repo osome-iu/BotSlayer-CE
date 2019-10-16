@@ -56,7 +56,7 @@ The backend collects and analyzes tweets, while the frontend renders a dashboard
 The backend and frontend communicate with each other through the middleware APIs.
 
 Data collection is query-driven and requires a Twitter app key.
-The user-defined query is a set of keywords of interest, see [Twitter's document](https://developer.twitter.com/en/docs/tweets/filter-realtime/guides/basic-stream-parameters.html#track) for details.
+The user-defined query is a set of keywords of interest, see [Twitter's documentation](https://developer.twitter.com/en/docs/tweets/filter-realtime/guides/basic-stream-parameters.html#track) for details.
 These keywords are fed to Twitter's filtering API to fetch a stream of related tweets. The software extracts entities (hashtags, user handles, links, and media) for further analysis. 
 
 Entities are stored in a PostgreSQL database, interfaced with the tweet collector and the middleware using `asyncpg` and `asyncio` in Python3.
