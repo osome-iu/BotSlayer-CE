@@ -60,7 +60,7 @@ The user-defined query is a set of keywords of interest, see [Twitter's document
 These keywords are fed to Twitter's filtering API to fetch a stream of related tweets. The software extracts entities (hashtags, user handles, links, and media) for further analysis. 
 
 Entities are stored in a PostgreSQL database, interfaced with the tweet collector and the middleware using `asyncpg` and `asyncio` in Python3.
-All statistical and machine learning calculation are implemented in SQL query to leverage database concurrency on the server machine.
+All statistical and machine learning calculations are implemented in SQL query to leverage database concurrency on the server machine.
 The whole backend is wrapped inside a Docker container to allow flexible and portable deployment.
 
 BotSlayer-CE provides users with a dashboard that is accessible through any web browser.
@@ -79,7 +79,7 @@ Finally, botness measures the level of bot-like activity.
 The intuition for the BS level is that entities with intermediate diversity and high volume, trendiness, and botness tend to be more suspicious.
 
 To measure the botness, BotSlayer-CE is equipped with a simple rule-based bot scoring function.
-The bot scoring function uses simple heuristics based on high friend growth rate, high friend/follower ratio, high tweeting frequency, and default profile image to calculate bot scores. These heuristics yield about 0.70 AUC when tested on annotated accounts [@yang2019arming]. They may be appropriate to detect some bots and not others. Depending on the research domain, different bot detection algorithms may be advisable. One can plug their favorite bot detection system into the `BotRuler` class. One could implement simpler heuristics based on high tweet rate [@howard2016bots] or default profile image [@forelle2015political], use [state-of-the-art machine learning bot detection tools](https://botometer.iuni.iu.edu/) [@davis2016botornot; @varol2017online], or train their own classifier. For example, the ["Pro" version of BotSlayer](https://osome.iuni.iu.edu/tools/botslayer/) uses a proprietary bot detection software. 
+The bot scoring function uses simple heuristics based on high friend growth rate, high friend/follower ratio, high tweeting frequency, and default profile image to calculate bot scores. These heuristics yield about 0.70 AUC (Area Under the receiver operating characteristic Curve) when tested on annotated accounts [@yang2019arming]. They may be appropriate to detect some bots and not others. Depending on the research domain, different bot detection algorithms may be advisable. One can plug their favorite bot detection system into the `BotRuler` class. One could implement simpler heuristics based on high tweet rate [@howard2016bots] or default profile image [@forelle2015political], use [state-of-the-art machine learning bot detection tools](https://botometer.iuni.iu.edu/) [@davis2016botornot; @varol2017online], or train their own classifier. For example, the ["Pro" version of BotSlayer](https://osome.iuni.iu.edu/tools/botslayer/) uses a proprietary bot detection software. 
 Accounts that display the suspicious behaviors mentioned above will have scores close to 1.
 
 # References
