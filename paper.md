@@ -38,8 +38,8 @@ Attempts to manipulate discussions may and often does involve real humans; examp
 Recent reports show that malicious social bots --- inauthentic accounts controlled in part by software --- have been active during the U.S. presidential election in 2016 [@bessi2016social], the 2017 Catalan referendum in Spain [@stella2018bots], the French Presidential Election of 2017 [@ferrara2017disinformation], and the 2018 U.S. midterm election [@deb2019perils].
 
 Detecting such manipulation presents serious research challenges. 
-First, one needs to collect and analyze data, which requires significant storage and computing resources [@osome].
-Second, finding patterns and signals of suspicious behaviors from huge amounts of data requires advanced computational skills [@FerraraPromotedPosterICWSM2016; @campaigns2017].
+Firstly, one needs to collect and analyze data, which requires significant storage and computing resources [@osome].
+Secondly, finding patterns and signals of suspicious behaviors from huge amounts of data requires advanced computational skills [@FerraraPromotedPosterICWSM2016; @campaigns2017].
 In fact, most studies on this phenomenon are disseminated months or even years after the events.
 Detecting potential manipulations from real-time social media data streams remains an open challenge.
 
