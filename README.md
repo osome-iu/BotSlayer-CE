@@ -1,5 +1,7 @@
 # BotSlayer-CE (Community Edition)
 
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.01706/status.svg)](https://doi.org/10.21105/joss.01706)
+
 BotSlayer is an application that helps track and detect potential manipulation of information spreading on Twitter.
 It's fast and the user-friendly interface makes it suitable for researchers from academia as well as journalists and citizens.
 
