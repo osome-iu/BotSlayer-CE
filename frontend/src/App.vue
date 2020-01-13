@@ -69,7 +69,7 @@
         },
         created()
         {
-            document.title = "BotSlayer beta";
+            document.title = "BotSlayer-CE beta";
             this.readConfigSeed();
             this.axios.defaults.headers = {
               'X-CSRFToken': csrf_token
