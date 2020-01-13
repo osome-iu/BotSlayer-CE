@@ -26,11 +26,6 @@ export default new Router({
       component: () => import('./views/DataPage.vue')
     },
     {
-      path: '/config',
-      name: 'config',
-      component: () => import('./views/Config.vue')
-    },
-    {
       path: '/help',
       name: 'help',
       component: () => import('./views/Help.vue')

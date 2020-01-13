@@ -1,36 +1,46 @@
 FROM library/postgres:11.5
 
+# set system locale
+ENV LANG C.UTF-8
+
 # system dependencies
-RUN apt-get -qq update
-RUN apt-get install -y python3 python3-dev python3-pip git vim curl build-essential openssl libssl-dev supervisor unzip
+##### add testing source for python3.7
+RUN echo "deb http://ftp.de.debian.org/debian testing main" | \
+        tee -a /etc/apt/sources.list && \
+    apt-get -qq update && \
+    apt-get install -y curl gnupg vim build-essential supervisor libcairo2-dev pkg-config libgirepository1.0-dev && \
+    apt-get -t testing install -y python3.7 python3.7-dev python3.7-distutils openssl libssl-dev && \
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3.7 get-pip.py && rm get-pip.py && \
+    python3 --version && python3.7 --version && which pip3
 
 # install nodejs and npm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-RUN /bin/bash -c "source ~/.bashrc && nvm install node 12.4"
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get -y install nodejs && node -v && npm -v
 
 # obtain source code
-RUN git clone https://github.com/IUNetSci/BotSlayer-CE.git /root/bev 
+RUN apt-get install -y git && \
+    git clone https://github.com/IUNetSci/BotSlayer-CE.git /root/bev && \
+    apt-get purge -y git
+
+# install requirements
+WORKDIR /root/bev/backend/
+RUN pip3 install -r requirements.txt
 # REMOVE GIT FROM IMAGE
-RUN apt-get purge -y git
 
 # link install backend
 WORKDIR /root/bev/backend/bev_backend
-RUN pip3 install -e .
-
-# install middleware
-WORKDIR /root/bev/middleware
-RUN pip3 install -r requirements.txt && ln -s ../frontend/dist frontend
+RUN pip3 install -e . && python3 -m spacy download en
 
 # build and install frontends
 WORKDIR /root/bev/frontend
-RUN /bin/bash -c "source ~/.bashrc \
-    && npm install && npm run build \
-    && npm i frontail -g"
+RUN ln -s /root/bev/frontend/dist /root/bev/middleware/frontend && \
+    npm -v && nodejs -v && \
+    npm install && npm run build && npm i frontail -g
 
 # prepare entrypoint and configure system
 WORKDIR /root/bev
-run cp backend/bev_backend/bev_backend/database/psql/create_table.sql /docker-entrypoint-initdb.d/
-run cp supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN cp backend/bev_backend/bev_backend/database/psql/create_table.sql /docker-entrypoint-initdb.d/
+RUN cp supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ENV POSTGRES_USER bev
 ENV POSTGRES_PASSWORD bev
 ENV POSTGRES_DB bev
@@ -38,3 +48,4 @@ ENTRYPOINT ["/usr/bin/supervisord"]
 EXPOSE 5432
 EXPOSE 5000
 EXPOSE 9001
+EXPOSE 9002
