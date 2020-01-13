@@ -2,7 +2,7 @@
   <div id="app" style="overflow: auto;">
     <div>
       <b-navbar toggleable="lg" style="background-color: #147340; padding: 0px">
-        <b-navbar-brand style="padding: 0px"><h1 style="margin: 0px"><router-link to="/dataPage" style="color: white"><img class="m-2" src="assets/BotSlayer-Navbar.png">BotSlayer <span style="color: rgb(160, 255, 64)">beta</span><canvas id="myCanvas" width="1" height="1"></canvas></router-link></h1></b-navbar-brand>
+        <b-navbar-brand style="padding: 0px"><h1 style="margin: 0px"><router-link to="/dataPage" style="color: white"><img class="m-2" src="assets/BotSlayer-Navbar.png">BotSlayer-CE<span style="color: rgb(160, 255, 64)">beta</span><canvas id="myCanvas" width="1" height="1"></canvas></router-link></h1></b-navbar-brand>
         <b-navbar-toggle class="navbar-dark ml-auto" target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
