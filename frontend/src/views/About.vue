@@ -18,7 +18,7 @@
       <a href="http://iuni.iu.edu/" target="_blank ">IUNI</a>
           | 
       <a href="http://cnets.indiana.edu/" target="_blank ">CNetS</a>
-      <p>© BotSlayer 2019</p>
+      <p>© BotSlayer-CE 2019</p>
     </div>
   </div>
 </template>
