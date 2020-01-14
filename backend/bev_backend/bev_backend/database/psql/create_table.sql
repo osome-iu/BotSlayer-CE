@@ -76,7 +76,10 @@ INSERT INTO public.config(name) VALUES
   ('consumerSecret'),
   ('accessToken'),
   ('accessTokenSecret'),
-  ('seed');
+  ('seed'),
+  ('user'),
+  ('location'),
+  ('pinned');
 
 INSERT INTO public.config(name, valstr) VALUES
   ('cfgpass', 'password_not_set');
