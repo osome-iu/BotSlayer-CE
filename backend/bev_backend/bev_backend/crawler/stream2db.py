@@ -159,7 +159,7 @@ def parse_query(query_name, settings):
 
 
 
-def main():
+def setup():
     # fetch query along with other settings
     settings = get_user_settings()
 
@@ -191,11 +191,17 @@ def main():
 
     # delete information from RAM
     del settings
+    return query_dict, stream
+
+
+
+def main():
 
     # start streaming
     while True:
         try:
             if len(query) > 0:
+                query_dict, stream = setup()
                 # there is something to track
                 logging.info("filtering with the following parameters : {}".format(query_dict))
                 stream.statuses.filter(tweet_mode='extended', **query_dict)
@@ -205,7 +211,7 @@ def main():
                 time.sleep(10)
         except Exception as e:
             logging.exception("exception fall through all catches")
-            continue
+            raise e
 
 
 

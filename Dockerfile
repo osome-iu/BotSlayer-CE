@@ -19,13 +19,13 @@ RUN apt-get -y install nodejs && node -v && npm -v
 
 # obtain source code
 RUN apt-get install -y git && \
-    git clone https://github.com/IUNetSci/BotSlayer-CE.git /root/bev && \
+    git clone https://github.com/IUNetSci/BotSlayer-CE.git --single-branch --branch major_update /root/bev && \
+    # REMOVE GIT FROM IMAGE
     apt-get purge -y git
 
 # install requirements
 WORKDIR /root/bev/backend/
 RUN pip3 install -r requirements.txt
-# REMOVE GIT FROM IMAGE
 
 # link install backend
 WORKDIR /root/bev/backend/bev_backend
