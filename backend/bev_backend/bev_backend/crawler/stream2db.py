@@ -80,7 +80,7 @@ class BatchedStream(twython.TwythonStreamer):
                 # obtain bot score for retweet users
                 retweet_user_scores = self._botometer.detect_on_tweet_objects(retweets)
                 retweet_user_scores = {
-                    rt['retweeted_status']['user']['id'] : retweet_user_score
+                    rt['user']['id'] : retweet_user_score
                     for rt, retweet_user_score in
                         zip(retweets, retweet_user_scores.bot_score_lite)
                 }
@@ -188,8 +188,8 @@ def main():
     # start streaming
     while True:
         try:
-            if len(query) > 0:
-                query_dict, stream = setup()
+            query_dict, stream = setup()
+            if len(query_dict) > 0:
                 # there is something to track
                 logging.info("filtering with the following parameters : {}".format(query_dict))
                 stream.statuses.filter(tweet_mode='extended', **query_dict)

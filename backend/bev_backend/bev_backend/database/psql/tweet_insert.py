@@ -260,7 +260,7 @@ async def batch_psql_entity_insert(conn, json_objs, bot_scores, rt_user_scores):
                 'tid': jobj['id_str'], # use the tid from retweet
                 'uid': rt['user']['id_str'],
                 'entities': jobj['entities'],
-                'bs': str(rt_user_scores[idx])
+                'bs': str(rt_user_scores[rt['user']['id']])
             }
 
             data += await entity_extract('hashtags', 'text', **arg_dict)
