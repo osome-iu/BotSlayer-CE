@@ -77,24 +77,12 @@ class BatchedStream(twython.TwythonStreamer):
                 if 'retweeted_status' in json_obj
             ]
             if len(retweets) > 0:
-                retweets_users = [
-                    [ idx ,
-                    (
-                        json_obj['created_at'], # probe timestamp
-                        json_obj['retweeted_status']#['user']
-                    )
-                    ]
-                    for idx, json_obj in enumerate(json_objs)
-                    if 'retweeted_status' in json_obj
-                ]
                 # obtain bot score for retweet users
-                retweet_user_scores = self._botometer.detect_on_tweet_objects(
-                    [indexed_user[1] for indexed_user in retweets_users]
-                )
+                retweet_user_scores = self._botometer.detect_on_tweet_objects(retweets)
                 retweet_user_scores = {
-                    indexed_user[0] : retweet_user_score
-                    for indexed_user, retweet_user_score in
-                        zip(retweets_users, retweet_user_scores.bot_score_lite)
+                    rt['retweeted_status']['user']['id'] : retweet_user_score
+                    for rt, retweet_user_score in
+                        zip(retweets, retweet_user_scores.bot_score_lite)
                 }
             else:
                 retweet_user_scores = dict()
