@@ -208,10 +208,10 @@ def main():
             else:
                 # nothing to track, do random 1% sample
                 logging.info("no parameter given, sleeping for 10s...")
-                time.sleep(10)
+                time.sleep(30)
         except Exception as e:
             logging.exception("exception fall through all catches")
-            raise e
+            time.sleep(30)
 
 
 
