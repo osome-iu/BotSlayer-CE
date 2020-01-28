@@ -52,12 +52,12 @@ Please be aware of Twitter's [terms and policies](https://developer.twitter.com/
 
 If you have mapped the ports differently for the database (not 5432) when launching the BotSlayer container, please remember to change `-p 5432` to `-p your_destination_port` accordingly.
 
-Please update the fields in the `config` table accordingly.
-Note that query terms in `track` and `follow` are common separated, and the field `cfgpassword` can be safely ignored.
+Please update the fields in the `config` table accordingly. There are different rows for different types of qieries. For example, the `track` row can be used to enter keywords, hashtags, and so on. Please see the Help page for details. 
+Note that query terms in `track` and `follow` are comma separated, and the field `cfgpassword` can be safely ignored.
 The query will be used to collect tweets of interest from Twitter.
 
 Suppose we want to inspect the health of the online discussion about the 2020 U.S. election; we can use several related hashtags as the query.
-Please be aware that if your query hits more than 1 percent of all Twitter volume at any time, the collection will momentarily halt.
+Please be aware that if your query hits more than 1% of all Twitter volume at any time, the collection will momentarily halt.
 Slower collection also allows the machine to save more data for restrospective analysis.
 Please try to strike a good balance between coverage and focus while coming up with your query.
 
