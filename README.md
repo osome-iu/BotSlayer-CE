@@ -5,7 +5,6 @@
 BotSlayer is an application that helps track and detect potential manipulation of information spreading on Twitter.
 It's fast and the user-friendly interface makes it suitable for researchers from academia as well as journalists and citizens.
 
-
 # Installation instructions
 
 To install BotSlayer-CE on any linux machine, user needs to first properly install the container software `docker`. Please follow the instructions on [Docker's website](https://docs.docker.com/install/). Please remember to add your current user to the `docker` user group, which will avoid the need for the `sudo` command when using `docker`. 
@@ -17,7 +16,7 @@ With `docker` installed, you can then proceed to clone this repository, e.g.
 Enter the repo directory, and build the docker image by
 
     docker build --tag=bsce .
-    
+
 Upon completion of the image building, you can setup storage volumes and run the container by
 
     docker volume create pgdata
@@ -35,18 +34,32 @@ If the container starts successfully, you should be able to find the frontend at
 Users are recommended AGAINST exposing port `9001` to external users, because it contains debugging information, including certain settings in database and middleware. One secure way for developers to gain access to the logging interface is `SSH tunnel` as follows
 
     ssh -L{destination_port}:localhost:9001 remoteHostIP
-    
-# Real-world Use Case
+
+# Starting the collection
 
 Now that you have BotSlayer-CE up and running, you can start to configure your instance to track the topics of interest.
-You can go to the `Config` page from the link in the upper right corner of the page.
-Since it's a fresh instance, you will need to set a password to access the `Config` page later.
+After SSH remote login, you can enter the information into the `config` table by accessing the database:
 
-![Figure 1: Config page of BotSlayer-CE.](config_page.png)
+    psql -U bev -h localhost -p 5432 bev
 
-In the `Config` page, you can set your query and Twitter app keys and tokens, see **Figure 1** for a screen shot.
+You might need to install `psql` on your machine first.
+The password is 'bev'.
+Note that although the password is public, only system administrators of the BotSlayer instance can access the database, unless the system administrator exposes the PostgreSQL port which by default is `5432`.
+We strongly recommend AGAINST this.
+Through the database, the user can access the raw data.
+Please refer to the [`db_schema.md`](db_schema.md) for the table schema.
+Please be aware of Twitter's [terms and policies](https://developer.twitter.com/en/developer-terms/agreement-and-policy.html) with regard to sharing Twitter content with third parties.
+
+If you have mapped the ports differently for the database (not 5432) when launching the BotSlayer container, please remember to change `-p 5432` to `-p your_destination_port` accordingly.
+
+Please update the fields in the `config` table accordingly. There are different rows for different types of qieries. For example, the `track` row can be used to enter keywords, hashtags, and so on. Please see the Help page for details. 
+Note that query terms in `track` and `follow` are comma separated, and the field `cfgpassword` can be safely ignored.
 The query will be used to collect tweets of interest from Twitter.
+
 Suppose we want to inspect the health of the online discussion about the 2020 U.S. election; we can use several related hashtags as the query.
+Please be aware that if your query hits more than 1% of all Twitter volume at any time, the collection will momentarily halt.
+Slower collection also allows the machine to save more data for restrospective analysis.
+Please try to strike a good balance between coverage and focus while coming up with your query.
 
 # Testing
 
@@ -128,24 +141,6 @@ The frontend is compiled by `Vue`/`npm` into the `dist` folder, which the `middl
 
 `nginx` doubles as BotSlayer's webserver and reverse proxy.
 It gzips all data sent to the browser and allows the user to go directly to their instance's IP address, as opposed to adding the port to the end, like so: `:5000`
-
-# Data Export
-
-You can export the dashboard data in CSV format by clcking the `Export` button on the main page.
-
-It is also possible to access the full Twitter content collected by the BotSlayer backend by accessing the database:
-
-    psql -U bev -h localhost -p 5432 bev
-    
-You might need to install `psql` on your machine first.
-The password is 'bev'.
-Note that although the password is public, only system administrators of the BotSlayer instance can access the database, unless the system administrator exposes the PostgreSQL port which by default is `5432`.
-We strongly recommend AGAINST this.
-Through the database, the user can access the raw data.
-Please refer to the [`db_schema.md`](db_schema.md) for the table schema.
-Please be aware of Twitter's [terms and policies](https://developer.twitter.com/en/developer-terms/agreement-and-policy.html) with regard to sharing Twitter content with third parties.
-
-If you have mapped the ports differently for the database (not 5432) when launching the BotSlayer container, please remember to change `-p 5432` to `-p your_destination_port` accordingly.
 
 # Summary of BotSlayer-CE
 

@@ -16,7 +16,7 @@ setup(
     install_requires=[
         "circus",
         "asyncpg",
-        "tweepy",
-        "pandas"
+        "twython",
+        "spacy"
     ],
 )
