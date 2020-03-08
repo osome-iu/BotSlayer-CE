@@ -111,7 +111,7 @@
                 <b-card-text>
                     BotSlayer-CE hasn't collected any data for this query.
                     <br>Try testing a really popular hashtag or user for your query.
-                    <br>If the table still doesn't appear below, check the Config page to see that the Twitter keys match.
+                    <br>If the table still doesn't appear below, check the config table in the database to see that the Twitter keys match.
                 </b-card-text>
             </b-card>
         </div>
