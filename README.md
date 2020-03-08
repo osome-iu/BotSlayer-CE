@@ -77,7 +77,7 @@ To test the functionalities that involve database interactions, it is best to ma
 ## Manual
 
 In order for BotSlayer-CE to run, you will need app keys from Twitter.
-Once you enter consumer key, consumer secret, access token, and access token secret in the dedicated fields of the `Config` page and click the `SAVE` button, the change will take effect immediately.
+Once you enter consumer key, consumer secret, access token, and access token secret in the dedicated fields of the `Config` table and click the `SAVE` button, the change will take effect immediately.
 
 It only takes a few minutes for data to be visible in the dashboard if the query produces enough volume. That is how you will know that the system is working.
 However, a fresh BotSlyer-CE instance needs at least 8 hours to collect data for meaningful analysis.
@@ -124,7 +124,6 @@ The frontend is built with `Vue`. The only components used are ones installed wi
 `App.vue` handles the navbar and router links to the other pages below:
 
  - `About.vue` is a page detailing a short description of what BotSlayer is used for.
- - `Config.vue` is the configuration page where the user should enter their desired query and twitter keys.
  - `DataPage.vue` acts as the landing page. It's where all of the data is shown in a table format with connectivity to Hoaxy, Twitter, and Google.
  - `Help.vue` contains some links to Twitter documentation for getting developer keys and for understanding how their streaming queries should be formatted.
 
@@ -174,7 +173,6 @@ All statistical and machine learning calculation are implemented in SQL query to
 The whole backend is wrapped inside a Docker container to allow flexible and portable deployment.
 
 BotSlayer-CE provides users with a dashboard that is accessible through any web browser.
-The frontend allows users to set up the app key and change query of interest through a configuration page. 
 The main page displays statistics of entities related to the query, ordered from the most suspicious to the least by a metric called `BS Level`.
 Users can also re-order the entities by different metrics like botness and trendiness, or filter them by keywords or types to explore potentially suspicious behaviors.
 For each entity, the dashboard provides links for users to go back to Twitter to check the original discussion or search on Google.
