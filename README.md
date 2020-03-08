@@ -77,7 +77,7 @@ To test the functionalities that involve database interactions, it is best to ma
 ## Manual
 
 In order for BotSlayer-CE to run, you will need app keys from Twitter.
-Once you enter consumer key, consumer secret, access token, and access token secret in the dedicated fields of the `Config` table and click the `SAVE` button, the change will take effect immediately.
+Once you enter consumer key, consumer secret, access token, and access token secret in the dedicated fields of the `Config` table, the change will take effect immediately.
 
 It only takes a few minutes for data to be visible in the dashboard if the query produces enough volume. That is how you will know that the system is working.
 However, a fresh BotSlyer-CE instance needs at least 8 hours to collect data for meaningful analysis.
