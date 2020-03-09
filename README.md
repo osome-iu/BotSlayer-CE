@@ -52,7 +52,7 @@ Please be aware of Twitter's [terms and policies](https://developer.twitter.com/
 
 If you have mapped the ports differently for the database (not 5432) when launching the BotSlayer container, please remember to change `-p 5432` to `-p your_destination_port` accordingly.
 
-Please update the fields in the `config` table accordingly. There are different rows for different types of qieries. For example, the `track` row can be used to enter keywords, hashtags, and so on. Please see the Help page for details. 
+Please update the fields in the `config` table accordingly. There are different rows for different types of queries. For example, the `track` row can be used to enter keywords, hashtags, and so on. Please see the Help page for details. 
 Note that query terms in `track` and `follow` are comma separated, and the field `cfgpassword` can be safely ignored.
 The query will be used to collect tweets of interest from Twitter.
 
