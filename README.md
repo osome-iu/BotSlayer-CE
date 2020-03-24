@@ -5,6 +5,8 @@
 BotSlayer is an application that helps track and detect potential manipulation of information spreading on Twitter.
 It's fast and the user-friendly interface makes it suitable for researchers from academia as well as journalists and citizens.
 
+**Note: The open-source BotSlayer-CE is not as actively maintained as the ["full" version of BotSlayer](https://osome.iu.edu/tools/botslayer), which is free to use but not open-source because it includes a proprietary bot detection software. The "Full" version also includes additional features such as a friendly configuration tool and account coordination detection. It is available as both AWS machine image and Docker image.**
+
 # Installation instructions
 
 To install BotSlayer-CE on any linux machine, user needs to first properly install the container software `docker`. Please follow the instructions on [Docker's website](https://docs.docker.com/install/). Please remember to add your current user to the `docker` user group, which will avoid the need for the `sudo` command when using `docker`. 
