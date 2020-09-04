@@ -22,7 +22,7 @@
     "lodash": "^4.17.15",
     "luxon": "^1.19.3",
     "npm": "^6.11.3",
-    "papaparse": "^4.6.3",
+    "papaparse": "^5.3.0",
     "vue": "^2.6.10",
     "vue-apexcharts": "^1.5.2",
     "vue-axios": "^2.1.4",
