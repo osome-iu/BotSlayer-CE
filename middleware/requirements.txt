@@ -1,6 +1,6 @@
 Click==7.0
 Flask==1.0.2
-Flask-Cors==3.0.4
+Flask-Cors==3.0.9
 itsdangerous==1.1.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
